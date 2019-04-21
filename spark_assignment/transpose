@@ -1,0 +1,11 @@
+import org.apache.spark.sql.types.IntegerType;
+import org.apache.spark.sql.types.StructType
+import org.apache.spark.sql.types.StructField;
+import org.apache.spark.sql.types.DataTypes;
+var schema=DataTypes.createStructType(Array(DataTypes.createStructField("segment_id",DataTypes.IntegerType,true),DataTypes.createStructField("val1",DataTypes.IntegerType,true),DataTypes.createStructField("val2",DataTypes.IntegerType,true),DataTypes.createStructField("val3",DataTypes.IntegerType,true),DataTypes.createStructField("val4",DataTypes.IntegerType,true),DataTypes.createStructField("val5",DataTypes.IntegerType,true),DataTypes.createStructField("val6",DataTypes.IntegerType,true)))
+var data = List(Row(1,100,0,0,0,0,0),Row(2,0,50,0,0,20,0))
+var ds=spark.createDataFrame(sc.parallelize(data),schema)
+
+//Transpose the dataset
+val kv = explode(array(ds.columns.tail.map { c => struct(lit(c).alias("k"), col(c).alias("v"))}: _*))
+ds.withColumn("kv", kv).select($"segment_id", $"kv.k", $"kv.v").groupBy($"k").pivot("segment_id").agg(first($"v")).orderBy($"k").withColumnRenamed("k", "vals")

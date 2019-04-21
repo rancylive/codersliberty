@@ -1,0 +1,103 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.techventura</groupId>
+	<artifactId>pipeasy</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>pipeasy</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<parent>
+		<groupId>com.limitedbrands.oms</groupId>
+		<artifactId>oms-pipeline-parent</artifactId>
+		<version>0.1.1</version>
+	</parent>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>https://artifactory.lbidts.com/artifactory/mapr-maven-virtual</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<url>https://artifactory.lbidts.com/artifactory/mapr-maven-virtual</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.limitedbrands.oms</groupId>
+			<artifactId>oms-utility</artifactId>
+			<version>3.3.1</version>
+			<!--This exclusion is due to the fact oms-utility has spring dependencies 
+				for microservices. -->
+			<!--We need to exclude spring logging for log4j to work. -->
+			<!--We should not be using oms-utility in spark jobs as the long term 
+				solution -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.limitedbrands.oms</groupId>
+			<artifactId>order-pipeline-util</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-ldap</artifactId>
+			<version>1.5.9.RELEASE</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<manifest>
+						<attribute name="Main-Class"
+							value="com.techventura.pipeasy.reader.RowPrefixScanner" />
+					</manifest>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>

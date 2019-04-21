@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  -->
+<link rel="stylesheet" href="/main.css" />
+</head>
+<body>
+<div id="react"></div>
+<script src="built/bundle.js"></script>
+
+	<div>
+		<p>
+			<a href="/hbase/tables">List tables</a>
+		</p>
+		<form methot="POST" , action="/hbase/table/create">
+			Create table with name <input type="text" placeholder="Table name"
+				name="tableName" /> <input type="submit" value="Create table">
+		</form>
+		<form methot="POST" , action="/hbase/table/update">
+			Update table with name <input type="text" placeholder="Table name"
+				name="tableName" /> <input type="submit" value="Update table">
+		</form>
+		<form methot="POST" , action="/hbase/data">
+			View data for table <input type="text" placeholder="Table name"
+				name="tableName" />
+				<input type="text" value="0" name="viewMode" placeholder="View Mode"/> <input type="submit" value="View">
+		</form>
+		<form methot="POST" , action="hbase/table/delete">
+			Delete table <input type="text" placeholder="Table name"
+				name="tableName" /> <input type="submit" value="Delete">
+		</form>
+		<form methot="POST" , action="/api/property">
+			Read Property <input type="text" placeholder="Property key name"
+				name="key" /> <input type="submit" value="Read">
+		</form>
+		<a href="/createTable.html">Create Table</a>
+	</div>
+</body>
+</html>

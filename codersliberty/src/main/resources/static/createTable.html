@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function createField(tableForm) {
+	var i = document.createElement("input");
+	i.type = "text";
+	i.name = "user_name";
+	i.id = "user_name1";
+	
+	tableForm.appendChild(i);
+	document.reload();
+}
+</script>
+</head>
+<body>
+	<div>
+		<form name="createTable" action="hbase/table/create" method="POST">
+			Create table with name <input type="text" placeholder="Table name"
+				name="tableName" /> 
+				Add column family <input type="text" placeholder="Column family" name="cf1">
+				<input type="button" value="Add More Column Family" onclick="createField(this)"/>
+				<input type="hidden" name="cf_counter" value=1>
+				<input type="submit" value="Create table">
+		</form>
+	</div>
+</body>
+</html>

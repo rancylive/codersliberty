@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.clusterfoundry</groupId>
+	<artifactId>pubsub_client</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>pubsub_client Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.5.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-pubsub</artifactId>
+			<version>1.48.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.bahir/spark-streaming-pubsub -->
+		<dependency>
+			<groupId>org.apache.bahir</groupId>
+			<artifactId>spark-streaming-pubsub_2.11</artifactId>
+			<version>2.1.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.api-client</groupId>
+					<artifactId>google-api-client-parent</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-streaming -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-streaming_2.11</artifactId>
+			<version>2.3.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_2.11</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_2.11</artifactId>
+			<version>2.3.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.hadoop</groupId>
+					<artifactId>hadoop-client</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-hive -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-hive_2.11</artifactId>
+			<version>2.3.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-client -->
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-client</artifactId>
+			<version>2.7.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.cloud/google-cloud-storage -->
+		<dependency>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-storage</artifactId>
+			<version>1.52.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.api-client</groupId>
+			<artifactId>google-api-client</artifactId>
+			<version>1.24.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>pubsub_client</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
