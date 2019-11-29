@@ -31,6 +31,23 @@ public class BinarySearchTree<T extends Comparable> {
 		}
 	}
 
+	public void insertRecord(T data) {
+		Node<Integer> temp = new Node(data);
+		this.root = insertRecursive(root, data);
+	}
+
+	public Node insertRecursive(Node node, T key) {
+		if(this.root == null) {
+			root = new Node(key);
+			return node;
+		}
+		if (key.compareTo(node.getData()) > 0) {
+			root.setRight(insertRecursive(node.getRight(), key)); 
+		} else if (key.compareTo(node.getData()) < 0) {
+			root.setLeft(insertRecursive(node.getLeft(), key));
+		}
+		return root;
+	}
 	public boolean search(T data) {
 		return search(root, data);
 	}
@@ -95,6 +112,22 @@ public class BinarySearchTree<T extends Comparable> {
 		bst.postOrder(bst.getRoot());
 		System.out.println(bst.search(3));
 		System.out.println(bst.getRoot());
+		bst.insertRecord(20);
+		bst.insertRecord(5);
+		bst.insertRecord(25);
+		bst.insertRecord(3);
+		bst.insertRecord(7);
+		bst.insertRecord(27);
+		bst.insertRecord(24);
+		System.out.println();
+		System.out.println("\nIn Order ");
+		bst.inOrder(bst.getRoot());
+		System.out.println("\nPre Order ");
+		bst.preOrder(bst.getRoot());
+		System.out.println("\nPost order ");
+		bst.postOrder(bst.getRoot());
+		System.out.println(bst.search(3));
+		System.out.println(bst.getRoot());;
 	}
 			
 /*	 20
